@@ -1,5 +1,5 @@
 {
-  "name": "chromecss",
+  "name": "chromediff",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/katat/ChromeCSS.git"
+    "url": "git+https://github.com/katat/ChromeDiff.git"
   },
   "directories": {
     "test": "test"
@@ -17,9 +17,9 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/katat/ChromeCSS/issues"
+    "url": "https://github.com/katat/ChromeDiff/issues"
   },
-  "homepage": "https://github.com/katat/ChromeCSS#readme",
+  "homepage": "https://github.com/katat/ChromeDiff#readme",
   "keywords": [
     "visual regression test"
   ],
