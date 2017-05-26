@@ -12,6 +12,8 @@ Please see tests
 
 ### Example
 ```javascript
+let chromeCss = new ChromeCSS()
+await chromeCss.init()
 let result = await chromeCss.compare({baseFilePath, newFilePath})
 assert.equal(false, result.data.isSameDimensions)
 assert.equal(13.515779092702171, result.data.rawMisMatchPercentage)
