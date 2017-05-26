@@ -1,6 +1,6 @@
 ## ChromeDiff
 
-Use headless chrome and resemblejs to compare images, generate statistics and diff file as comparison result.
+A node.js visual regression test library, compare images by using headless Chrome and resemble.js
 
 ### Install
 ```bash
