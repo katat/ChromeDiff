@@ -1,23 +1,23 @@
-const ChromeCSS = require('../')
+const ChromeDiff = require('../')
 const assert = require('assert')
 const fs = require('fs')
 
 describe('compare images', () => {
-  let chromeCss, baseFilePath = `${__dirname}/fixtures/one.png`, newFilePath = `${__dirname}/fixtures/two.png`
+  let chromeDiff, baseFilePath = `${__dirname}/fixtures/one.png`, newFilePath = `${__dirname}/fixtures/two.png`
   before(async () => {
-    chromeCss = new ChromeCSS()
-    await chromeCss.init()
+    chromeDiff = new ChromeDiff()
+    await chromeDiff.init()
   })
   after(async (done) => {
-    if(chromeCss.client) {
-      chromeCss.end()
+    if(chromeDiff.client) {
+      chromeDiff.end()
     }
     done()
   })
   describe('compare', function () {
     describe('difference', function () {
       it('without diff file output option, should not generate diff image file', async () => {
-        let result = await chromeCss.compare({baseFilePath, newFilePath})
+        let result = await chromeDiff.compare({baseFilePath, newFilePath})
         assert.equal(false, result.data.isSameDimensions)
         assert.equal(13.515779092702171, result.data.rawMisMatchPercentage)
         assert.equal(13.52, result.data.misMatchPercentage)
@@ -30,7 +30,7 @@ describe('compare images', () => {
         assert.equal(base64, result.imgurl.replace('data:image/png;base64,', ''))
       });
       it('with diff file output option, should generate diff img file', async () => {
-        let result = await chromeCss.compare({baseFilePath, newFilePath, diffFilePath: `${__dirname}/tmp/diff.png`})
+        let result = await chromeDiff.compare({baseFilePath, newFilePath, diffFilePath: `${__dirname}/tmp/diff.png`})
         assert(result.data)
         assert(result.diffImgFilePath)
         let bitmap = fs.readFileSync(result.diffImgFilePath);
@@ -40,7 +40,7 @@ describe('compare images', () => {
     });
     describe('same', function () {
       it('.', async () => {
-        let result = await chromeCss.compare({baseFilePath, newFilePath: baseFilePath})
+        let result = await chromeDiff.compare({baseFilePath, newFilePath: baseFilePath})
         assert.equal(true, result.data.isSameDimensions)
         assert.equal(0, result.data.rawMisMatchPercentage)
         assert.equal(0, result.data.misMatchPercentage)

@@ -3,7 +3,7 @@ const CDP = require('chrome-remote-interface')
 const fs = require('fs')
 const getPort = require('get-port')
 
-class ChromeCSS {
+class ChromeDiff {
   constructor (options) {
     this.options = options || {}
   }
@@ -95,4 +95,4 @@ class ChromeCSS {
   }
 }
 
-module.exports = ChromeCSS
+module.exports = ChromeDiff
