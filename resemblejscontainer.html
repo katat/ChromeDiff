@@ -1,0 +1,43 @@
+<html>
+<head>
+  <script src="node_modules/resemblejs/resemble.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  function run() {
+    return new Promise((resolve, reject) => {
+      resemble( document.getElementById( 'image-diff-one' ).files[ 0 ] ).
+      compareTo( document.getElementById( 'image-diff-two' ).files[ 0 ] ).
+      ignoreAntialiasing(). // <-- muy importante
+      onComplete( function ( data ) {
+        var diffImage;
+
+        // if ( Number( data.misMatchPercentage ) > mismatchTolerance ) {
+        //   result = data.misMatchPercentage;
+        // } else {
+        //   result = false;
+        // }
+        //
+        // window._imagediff_.hasResult = true;
+        //
+        // if ( Number( data.misMatchPercentage ) > mismatchTolerance ) {
+        // }
+        var img = new Image();
+
+        // img.onload = function () {
+        //   window._imagediff_.hasImage = true;
+        // };
+        document.getElementById( 'image-diff' ).appendChild( img );
+        img.src = data.getImageDataUrl();
+        resolve(JSON.stringify({data: data, imgurl: img.src}))
+      } );
+    })
+  }
+  </script>
+</head>
+<body>
+  <form id="image-diff-form">
+    <input type="file" id="image-diff-one" name="one"/>
+    <input type="file" id="image-diff-two" name="two"/>
+  </form>
+  <div id="image-diff"></div>
+</body>
+</html>

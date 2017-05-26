@@ -1,0 +1,42 @@
+{
+  "name": "chromecss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -t 10000",
+    "lint": "eslint --ext .js index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katat/ChromeCSS.git"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/katat/ChromeCSS/issues"
+  },
+  "homepage": "https://github.com/katat/ChromeCSS#readme",
+  "keywords": [
+    "visual regression test"
+  ],
+  "dependencies": {
+    "chrome-remote-interface": "^0.22.0",
+    "chromy": "^0.1.19",
+    "get-port": "^3.1.0",
+    "lighthouse": "^2.0.0",
+    "resemblejs": "^2.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "mocha": "^3.3.0"
+  }
+}
