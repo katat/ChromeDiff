@@ -13,7 +13,6 @@ Please see tests
 ### Example
 ```javascript
 let chromeDiff = new ChromeDiff()
-await chromeDiff.init()
 let result = await chromeDiff.compare({baseFilePath, newFilePath})
 var bitmap = fs.readFileSync(__dirname + '/fixtures/diff.png');
 let base64 = new Buffer(bitmap).toString('base64');

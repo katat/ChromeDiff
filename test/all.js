@@ -6,7 +6,6 @@ describe('compare images', () => {
   let chromeDiff, baseFilePath = `${__dirname}/fixtures/one.png`, newFilePath = `${__dirname}/fixtures/two.png`
   before(async () => {
     chromeDiff = new ChromeDiff()
-    await chromeDiff.init()
   })
   after(async (done) => {
     if(chromeDiff.client) {

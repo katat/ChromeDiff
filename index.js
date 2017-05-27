@@ -6,13 +6,16 @@ const getPort = require('get-port')
 class ChromeDiff {
   constructor (options) {
     this.options = options || {}
+    this.initialized = false
   }
   async init () {
-    this.options.port = this.options.port || await getPort()
-
-    this.launcher = this.createChromeLauncher(this.options)
-    await this.launcher.run()
-    return await new Promise((resolve, reject) => {
+    return await new Promise(async (resolve, reject) => {
+      if (this.initialized) {
+        return resolve(this)
+      }
+      this.options.port = this.options.port || await getPort()
+      this.launcher = this.createChromeLauncher(this.options)
+      await this.launcher.run()
       Object.assign(this.options, {
         target: (targets) => {
           return targets.filter(t => t.type === 'page').shift()
@@ -29,6 +32,7 @@ class ChromeDiff {
 
         await this.client.Page.navigate({url: `file:///${__dirname}/resemblejscontainer.html`})
         await this.client.Page.loadEventFired()
+        this.initialized = true
         resolve(this)
       })
     })
@@ -67,6 +71,7 @@ class ChromeDiff {
   }
   async compare (options) {
     let {baseFilePath, newFilePath, diffFilePath} = options
+    await this.init()
     return await new Promise(async (resolve, reject) => {
       let documentNode = await this.client.DOM.getDocument()
       let baseFileNode = await this.client.DOM.querySelector({
