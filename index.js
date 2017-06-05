@@ -57,8 +57,8 @@ class ChromeDiff {
       additionalFlags: flags
     })
   }
-  async end () {
-    if (this.client === null) {
+  async close () {
+    if (!this.client) {
       return false
     }
     await this.client.close()

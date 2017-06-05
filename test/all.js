@@ -9,7 +9,7 @@ describe('compare images', () => {
   })
   after(async (done) => {
     if(chromeDiff.client) {
-      chromeDiff.end()
+      chromeDiff.close()
     }
     done()
   })
